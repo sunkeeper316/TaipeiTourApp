@@ -11,9 +11,15 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.sun.taipeitourapp.common.Language
+import com.sun.taipeitourapp.factory.AttractionViewModelFactory
+import com.sun.taipeitourapp.model.repository.AttractionListDataRepository
+import com.sun.taipeitourapp.viewmodel.AttractionViewModel
 
 
 class MainFragment : Fragment() {
+    lateinit var attractionViewModel: AttractionViewModel
+    private lateinit var attractionViewModelFactory: AttractionViewModelFactory
+    private lateinit var attractionListDataRepository: AttractionListDataRepository
 
     lateinit var bt_translation : Button
     lateinit var toolbar : Toolbar
@@ -30,6 +36,11 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        attractionListDataRepository = AttractionListDataRepository()
+        attractionListDataRepository.getAttractionList(null , null, null, null) { error, result ->
+            Log.e("onResponse","test getAttractionList")
+        }
+
         toolbar = view.findViewById(R.id.toolbar)
         progressBar = view.findViewById(R.id.progressBar)
         bt_translation = toolbar.findViewById(R.id.bt_translation)

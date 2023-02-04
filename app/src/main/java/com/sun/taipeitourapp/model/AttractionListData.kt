@@ -6,5 +6,5 @@ class AttractionListData {
     @SerializedName("total")
     var total: Int? = 0
     @SerializedName("data")
-    var datas: MutableList<Attraction>? = null
+    var data: MutableList<Attraction>? = null
 }
